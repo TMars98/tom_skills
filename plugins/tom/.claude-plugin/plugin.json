@@ -1,0 +1,8 @@
+{
+  "name": "tom",
+  "version": "0.1.0",
+  "description": "Tom's Claude Code toolkit: multi-dimension local code reviewers (correctness, quality, security, test), a duplicate-work precheck, and a live visual scratchpad. One plugin, a few sharp skills.",
+  "author": {
+    "name": "TMars98"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "tom-skills",
+  "description": "Tom's personal Claude Code marketplace",
+  "owner": {
+    "name": "TMars98"
+  },
+  "plugins": [
+    {
+      "name": "tom",
+      "description": "Tom's Claude Code toolkit: multi-dimension local code reviewers (correctness, quality, security, test), a duplicate-work precheck, and a live visual scratchpad. Provider-neutral — works off plain git, CLAUDE.md, and (optionally) GitHub.",
+      "source": "./plugins/tom",
+      "category": "productivity"
+    }
+  ]
+}
