@@ -32,16 +32,25 @@ A composite that fans out to **four single-dimension reviewer sub-agents in para
 /tom:local-review with tests      # add the 4th test-adequacy pass
 ```
 
-The reviewers are also usable on their own as agents:
+Each dimension is also its own **single-dimension, read-only command** — run just the one you want (same scope flags as `local-review`):
 
-| Agent | Dimension | Severities |
-|-|-|-|
-| `correctness-reviewer` | Logic errors, broken invariants, missing error handling, regressions | `blocker`/`major`/`minor`/`nit` |
-| `quality-reviewer` | Readability, naming, duplication, convention adherence | `major`/`minor`/`nit` |
-| `security-reviewer` | Injection, authn/authz, secrets, OWASP top-10 | `critical`/`high`/`medium`/`low`/`nit` |
-| `test-reviewer` | Untested behavior, tests that can't fail, missing edge/error coverage | `major`/`minor`/`nit` |
+```
+/tom:correctness-review        # logic errors, broken invariants, regressions
+/tom:quality-review            # readability, naming, duplication, conventions
+/tom:security-review           # injection, authn/authz, secrets, OWASP
+/tom:test-review               # untested behavior, tests that can't fail
+```
 
-All return structured JSON: `{findings: [{severity, file, line, finding, fix}], summary}`. Reviewers surface **everything** (no pre-filtering); the consumer triages.
+These just print a report — they never apply fixes (use `/tom:local-review` for the fix-application flow). Each is backed by a reusable agent you can also dispatch directly (e.g. "use the quality-reviewer agent on my staged changes"):
+
+| Command | Agent | Dimension | Severities |
+|-|-|-|-|
+| `/tom:correctness-review` | `correctness-reviewer` | Logic errors, broken invariants, missing error handling, regressions | `blocker`/`major`/`minor`/`nit` |
+| `/tom:quality-review` | `quality-reviewer` | Readability, naming, duplication, convention adherence | `major`/`minor`/`nit` |
+| `/tom:security-review` | `security-reviewer` | Injection, authn/authz, secrets, OWASP top-10 | `critical`/`high`/`medium`/`low`/`nit` |
+| `/tom:test-review` | `test-reviewer` | Untested behavior, tests that can't fail, missing edge/error coverage | `major`/`minor`/`nit` |
+
+All reviewers return structured JSON: `{findings: [{severity, file, line, finding, fix}], summary}`, surface **everything** (no pre-filtering), and let the consumer triage.
 
 ### Duplicate-work check — `/tom:precheck`
 
@@ -79,6 +88,6 @@ tom_skills/
     ├── .claude-plugin/plugin.json
     ├── hooks/hooks.json              # arms the visualize inbox click-hook
     ├── agents/                       # the 4 reviewer sub-agents
-    ├── commands/                     # local-review, precheck, visualize
+    ├── commands/                     # local-review, *-review, precheck, visualize
     └── skills/visual-scratchpad/     # stdlib server + viewer for /tom:visualize
 ```

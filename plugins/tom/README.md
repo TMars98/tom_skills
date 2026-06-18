@@ -9,8 +9,14 @@ Tom's Claude Code toolkit. One plugin, a few sharp skills.
 | Command | What it does |
 |-|-|
 | `/tom:local-review [--staged \| --range a..b \| <path>] [with tests]` | Dispatches the four reviewers in parallel against local changes, aggregates, and offers in-place fixes. |
+| `/tom:correctness-review [<scope>]` | Single-dimension: logic errors, broken invariants, regressions. Read-only. |
+| `/tom:quality-review [<scope>]` | Single-dimension: readability, naming, duplication, conventions. Read-only. |
+| `/tom:security-review [<scope>]` | Single-dimension: injection, authn/authz, secrets, OWASP. Read-only. |
+| `/tom:test-review [<scope>]` | Single-dimension: untested behavior, tests that can't fail, edge/error coverage. Read-only. |
 | `/tom:precheck <idea>` | Checks whether work already exists — repo impl, git history, branches, open GitHub PRs. Read-only. |
 | `/tom:visualize [concept \| stop \| clear]` | Live browser scratchpad Claude can draw to, with bidirectional click events. |
+
+Scope flags for the review commands: `--staged` · `--uncommitted` · `--range a..b` · `<path>` (default: all uncommitted).
 
 ## Agents (composable building blocks)
 
