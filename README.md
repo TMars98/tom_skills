@@ -4,6 +4,12 @@ A small, personal Claude Code marketplace — the superpowers I actually use, pa
 
 Four focused capabilities, fully **provider-neutral**: everything works off plain `git`, your repo's `CLAUDE.md`/linter configs, and (optionally) GitHub via `gh`. No Jira/Bitbucket or MCP servers required.
 
+## Why this exists
+
+1. **Repeatability.** A workflow should produce the same shape of work no matter who runs it — me, a teammate, or Claude on its own. Encoding the steps as skills means they don't get skipped or improvised.
+2. **Reuse.** The reviewers and agents are shared building blocks, and the commands are just orchestration over them. Adding a new workflow usually means composing existing pieces in a new order, not writing fresh analysis logic.
+3. **Provider-neutral.** Nothing here is tied to a specific issue tracker, host, or MCP server. If you have `git` (and optionally `gh` and `python3`), it works — so the same kit drops into any repo.
+
 ## Install
 
 ```
