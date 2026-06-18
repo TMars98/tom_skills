@@ -29,6 +29,7 @@ All return `{findings: [{severity, file, line, finding, fix}], summary}`.
 ## Auto-invoked skills
 
 - `visual-scratchpad` — fires when a rendered view beats terminal prose; arms the scratchpad.
+- `frontend-router` — fires at the start of UI work; routes to the `frontend-design` plugin (notify-don't-force).
 
 ## Requirements
 

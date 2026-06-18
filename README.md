@@ -71,6 +71,18 @@ Searches the repo for an existing implementation, recent git history, local/remo
 
 Spins up a no-install local server (Python stdlib only, `127.0.0.1` only) and a browser page that live-renders whatever Claude writes to it. Buttons can post events back (`tomSend(...)`) which Claude reacts to live — a true two-way canvas. Degrades to a terminal explanation if `python3` is missing.
 
+### Frontend routing — `frontend-router` (auto-invoked)
+
+Not a command — a skill that fires automatically at the start of user-facing UI work (new components, pages, redesigns, "make it look like…"). It routes the work to the [`frontend-design`](https://docs.claude.com) plugin, which generates distinctive, production-grade interfaces.
+
+It's *notify-don't-force*: if `frontend-design` is installed it hands off to it; if not, it tells you how to install it and lets you proceed either way. Install the engine with:
+
+```
+/plugin install frontend-design@claude-plugins-official
+```
+
+The router never blocks and never force-installs; it skips itself for bug fixes, refactors, and non-visual work.
+
 ## Requirements
 
 - **`git`** — for `/tom:local-review` and `/tom:precheck`
@@ -89,5 +101,7 @@ tom_skills/
     ├── hooks/hooks.json              # arms the visualize inbox click-hook
     ├── agents/                       # the 4 reviewer sub-agents
     ├── commands/                     # local-review, *-review, precheck, visualize
-    └── skills/visual-scratchpad/     # stdlib server + viewer for /tom:visualize
+    └── skills/
+        ├── visual-scratchpad/        # stdlib server + viewer for /tom:visualize
+        └── frontend-router/          # auto-routes UI work to frontend-design
 ```
